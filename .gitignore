@@ -1,0 +1,17 @@
+#env
+.env
+
+# Logs
+*.log
+
+# Dependency manager
+node_modules/
+package-lock.json
+
+# Output files
+public/main.js
+public/style.css
+
+# IntelliJ IDEA IDE
+.idea/
+videoeditor.iml

@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<mlt>
+  <producer id="producer0">
+    <property name="length">00:04:40,380</property>
+    <property name="resource">original.mp4</property>
+  </producer>
+  <producer id="producer1">
+    <property name="resource">watermark1.png</property>
+  </producer>
+  <producer id="title">
+    <property name="mlt_service">pango</property>
+    <property name="resource">+.txt</property>
+    <property name="family">GJ-TTAvantika</property>
+    <property name="size">36</property>
+    <property name="align">1</property>
+    <property name="fgcolour">0xffffddff</property>
+    <property name="bgcolour">0x8c101080</property>
+    <property name="pad">8</property>
+    <property name="text"><![CDATA[This is the text i want to print]]></property>
+  </producer>
+  <playlist id="playlist0">
+    <entry producer="producer0" />
+  </playlist>
+  <playlist id="playlist1">
+    <blank length="00:01:00,000"/>
+    <entry producer="producer1" in="00:01:00,000" out="00:02:00,000"/>
+  </playlist>
+  <playlist id="playlist2">
+    <blank length="00:02:00,000"/>
+    <entry producer="producer1" in="00:02:00,000" out="00:03:00,000"/>
+  </playlist>
+  <playlist id="playlist3">
+    <blank length="00:02:00,000"/>
+    <entry producer="title" in="00:02:00,000" out="00:03:00,000"/>
+  </playlist>
+  <tractor id="tractor0" in="00:00:00,000" out="00:04:40,380">
+    <multitrack id="multitrack0">
+      <track producer="playlist0"/>
+      <track producer="playlist1"/>
+      <track producer="playlist2"/>
+      <track producer="playlist3"/>
+    </multitrack>
+    <transition id="transition0" in="00:01:00,000" out="00:02:00,000">
+      <property name="a_track">0</property>
+      <property name="b_track">1</property>
+      <property name="mlt_service">composite</property>
+      <property name="geometry">5%/85%:10%x10%</property>
+    </transition>
+    <transition id="transition1" in="00:02:00,000" out="00:03:00,000">
+      <property name="a_track">0</property>
+      <property name="b_track">2</property>
+      <property name="mlt_service">composite</property>
+      <property name="geometry">85%/5%:20%x20%</property>
+    </transition>
+    <transition id="transition2" in="00:02:00,000" out="00:03:00,000">
+      <property name="a_track">0</property>
+      <property name="b_track">3</property>
+      <property name="mlt_service">composite</property>
+      <property name="halign">centre</property>
+      <property name="valign">centre</property>
+    </transition>
+  </tractor>
+</mlt>
